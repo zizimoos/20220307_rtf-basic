@@ -3,6 +3,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
 import styled from "styled-components";
+import { ConeBufferGeometry } from "three";
 
 const Container = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ const Animation = (props) => {
   return null;
 };
 
-function BoxGeometry(props) {
+function CornGeometry(props) {
   const thisBox = useRef(null);
   return (
     <Container concurrent gl={{ antialias: true }}>
@@ -40,15 +41,16 @@ function BoxGeometry(props) {
         <directionalLight position={[-1, 10, 10]} color="white" intensity={1} />
         <group ref={thisBox}>
           <mesh>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+            <coneBufferGeometry attach="geometry" args={[1, 2, 16, 9, true]} />
             <meshPhongMaterial attach="material" color="dimgray" />
           </mesh>
           <line>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1, 2, 2, 2]} />
+            <coneBufferGeometry attach="geometry" args={[1, 2, 16, 9, true]} />
             <lineBasicMaterial attach="material" color="yellow" wireframe />
           </line>
           <axesHelper args={[100]} />
         </group>
+
         <Animation thisBox={thisBox} />
         <OrbitControls enablePan={true} zoomSpeed={0.5} />
       </Canvas>
@@ -56,4 +58,4 @@ function BoxGeometry(props) {
   );
 }
 
-export default BoxGeometry;
+export default CornGeometry;

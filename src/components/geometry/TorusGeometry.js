@@ -30,7 +30,7 @@ const Animation = (props) => {
   return null;
 };
 
-function BoxGeometry(props) {
+function TorusGeometry(props) {
   const thisBox = useRef(null);
   return (
     <Container concurrent gl={{ antialias: true }}>
@@ -40,15 +40,19 @@ function BoxGeometry(props) {
         <directionalLight position={[-1, 10, 10]} color="white" intensity={1} />
         <group ref={thisBox}>
           <mesh>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+            <torusBufferGeometry
+              attach="geometry"
+              args={[1, 0.5, 16, 16, Math.PI]}
+            />
             <meshPhongMaterial attach="material" color="dimgray" />
           </mesh>
           <line>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1, 2, 2, 2]} />
+            <torusBufferGeometry attach="geometry" args={[1, 0.5, 16, 16]} />
             <lineBasicMaterial attach="material" color="yellow" wireframe />
           </line>
           <axesHelper args={[100]} />
         </group>
+
         <Animation thisBox={thisBox} />
         <OrbitControls enablePan={true} zoomSpeed={0.5} />
       </Canvas>
@@ -56,4 +60,4 @@ function BoxGeometry(props) {
   );
 }
 
-export default BoxGeometry;
+export default TorusGeometry;
