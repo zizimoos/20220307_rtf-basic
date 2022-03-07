@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
@@ -29,28 +30,36 @@ const Animation = (props) => {
   return null;
 };
 
-function TorusKnotGeometry(props) {
+class CustomSinCurve extends THREE.Curve {
+  constructor(scale) {
+    super();
+    this.scale = scale;
+  }
+  getPoint(t) {
+    const tx = t * 3 - 1.5;
+    const ty = Math.sin(2 * Math.PI * t);
+    const tz = 0;
+    return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
+  }
+}
+const path = new CustomSinCurve(4);
+
+function ShapeSinGeometry(props) {
   const thisBox = useRef(null);
   return (
     <Container concurrent gl={{ antialias: true }}>
       <Title>BoxGeometry</Title>
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 20] }}>
         <ambientLight />
         <directionalLight position={[-1, 10, 10]} color="white" intensity={1} />
         <group ref={thisBox}>
           <mesh>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
+            <tubeGeometry attach="geometry" args={[path]} />
             <meshPhongMaterial attach="material" color="dimgray" />
           </mesh>
           <line>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
-            <lineBasicMaterial attach="material" color="yellow" wireframe />
+            <tubeGeometry attach="geometry" args={[path]} />
+            <lineBasicMaterial attach="material" color="yellow" />
           </line>
           <axesHelper args={[100]} />
         </group>
@@ -62,4 +71,4 @@ function TorusKnotGeometry(props) {
   );
 }
 
-export default TorusKnotGeometry;
+export default ShapeSinGeometry;

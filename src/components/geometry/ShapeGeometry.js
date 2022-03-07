@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
@@ -17,6 +18,13 @@ const Title = styled.h1`
   align-items: center;
 `;
 
+const shape = new THREE.Shape();
+shape.moveTo(1, 1);
+shape.lineTo(1, -1);
+shape.lineTo(-1, -1);
+shape.lineTo(-1, 1);
+shape.closePath();
+
 const Animation = (props) => {
   useFrame(({ clock }) => {
     props.thisBox.current.rotation.x =
@@ -29,7 +37,7 @@ const Animation = (props) => {
   return null;
 };
 
-function TorusKnotGeometry(props) {
+function ShapeGeometry(props) {
   const thisBox = useRef(null);
   return (
     <Container concurrent gl={{ antialias: true }}>
@@ -39,17 +47,11 @@ function TorusKnotGeometry(props) {
         <directionalLight position={[-1, 10, 10]} color="white" intensity={1} />
         <group ref={thisBox}>
           <mesh>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
+            <shapeGeometry attach="geometry" args={[shape]} />
             <meshPhongMaterial attach="material" color="dimgray" />
           </mesh>
           <line>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
+            <shapeGeometry attach="geometry" args={[shape]} />
             <lineBasicMaterial attach="material" color="yellow" wireframe />
           </line>
           <axesHelper args={[100]} />
@@ -62,4 +64,4 @@ function TorusKnotGeometry(props) {
   );
 }
 
-export default TorusKnotGeometry;
+export default ShapeGeometry;

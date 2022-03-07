@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
@@ -17,6 +18,18 @@ const Title = styled.h1`
   align-items: center;
 `;
 
+const shape = new THREE.Shape();
+const x = -2.5;
+const y = -5;
+shape.moveTo(x + 2.5, y + 2.5);
+shape.bezierCurveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
+shape.bezierCurveTo(x - 3, y, x - 3, y + 3.5, x - 3, y + 3.5);
+shape.bezierCurveTo(x - 3, y + 5.5, x - 1.5, y + 7.7, x + 2.5, y + 9.5);
+shape.bezierCurveTo(x + 6, y + 7.7, x + 8, y + 4.5, x + 8, y + 3.5);
+shape.bezierCurveTo(x + 8, y + 3.5, x + 8, y, x + 5, y);
+shape.bezierCurveTo(x + 3.5, y, x + 2.5, y + 2.5, x + 2.5, y + 2.5);
+shape.closePath();
+
 const Animation = (props) => {
   useFrame(({ clock }) => {
     props.thisBox.current.rotation.x =
@@ -29,27 +42,21 @@ const Animation = (props) => {
   return null;
 };
 
-function TorusKnotGeometry(props) {
+function ShapeHeartGeometry(props) {
   const thisBox = useRef(null);
   return (
     <Container concurrent gl={{ antialias: true }}>
       <Title>BoxGeometry</Title>
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 20] }}>
         <ambientLight />
         <directionalLight position={[-1, 10, 10]} color="white" intensity={1} />
         <group ref={thisBox}>
           <mesh>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
+            <shapeGeometry attach="geometry" args={[shape]} />
             <meshPhongMaterial attach="material" color="dimgray" />
           </mesh>
           <line>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
+            <shapeGeometry attach="geometry" args={[shape]} />
             <lineBasicMaterial attach="material" color="yellow" wireframe />
           </line>
           <axesHelper args={[100]} />
@@ -62,4 +69,4 @@ function TorusKnotGeometry(props) {
   );
 }
 
-export default TorusKnotGeometry;
+export default ShapeHeartGeometry;

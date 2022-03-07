@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
@@ -29,28 +30,31 @@ const Animation = (props) => {
   return null;
 };
 
-function TorusKnotGeometry(props) {
+const points = [];
+for (let i = 0; i < 10; i++) {
+  points.push(new THREE.Vector2(Math.sin(i * 0.2) * 3 + 3, (i - 5) * 0.8));
+  // const x = i * 0.1;
+  // const y = Math.sin(x);
+  // const z = Math.cos(x);
+  // points.push(new THREE.Vector3(x, y, z));
+}
+
+function ShapeLatheGeometry(props) {
   const thisBox = useRef(null);
   return (
     <Container concurrent gl={{ antialias: true }}>
       <Title>BoxGeometry</Title>
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 20] }}>
         <ambientLight />
         <directionalLight position={[-1, 10, 10]} color="white" intensity={1} />
         <group ref={thisBox}>
           <mesh>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
+            <latheGeometry attach="geometry" args={[points, 16]} />
             <meshPhongMaterial attach="material" color="dimgray" />
           </mesh>
           <line>
-            <torusKnotBufferGeometry
-              attach="geometry"
-              args={[1.5, 0.5, 64, 32, 2, 5]}
-            />
-            <lineBasicMaterial attach="material" color="yellow" wireframe />
+            <latheGeometry attach="geometry" args={[points, 16]} />
+            <lineBasicMaterial attach="material" color="yellow" />
           </line>
           <axesHelper args={[100]} />
         </group>
@@ -62,4 +66,4 @@ function TorusKnotGeometry(props) {
   );
 }
 
-export default TorusKnotGeometry;
+export default ShapeLatheGeometry;
