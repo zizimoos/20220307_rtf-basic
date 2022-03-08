@@ -3,6 +3,11 @@ import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import LineDashedMaterial from "../components/material/LineDashedMaterial";
 import LineMaterial from "../components/material/LineMaterial";
+import MeshBasicMaterial from "../components/material/MeshBasicMaterial";
+import MeshLambertMaterial from "../components/material/MeshLambertMaterial";
+import MeshPhongMaterial from "../components/material/MeshPhongMaterial";
+import MeshPhysicalMaterial from "../components/material/MeshPhysicalMaterial";
+import MeshStandardMaterial from "../components/material/MeshStandardMaterial";
 import PointsMaterial from "../components/material/PointsMaterial";
 
 const Container = styled.div`
@@ -51,12 +56,42 @@ function Material(props) {
         <Tab>
           <Link to={`/material/linedashedmaterial`}>LineDashedMaterial</Link>
         </Tab>
+        <Tab>
+          <Link to={`/material/meshbasicmaterial`}>MeshBasicMaterial</Link>
+        </Tab>
+        <Tab>
+          <Link to={`/material/meshlambertmaterial`}>MeshLambertMaterial</Link>
+        </Tab>
+        <Tab>
+          <Link to={`/material/meshphongmaterial`}>MeshPhongMaterial</Link>
+        </Tab>
+        <Tab>
+          <Link to={`/material/meshstandardmaterial`}>
+            MeshStandardMaterial
+          </Link>
+        </Tab>
+        <Tab>
+          <Link to={`/material/meshphysicalmaterial`}>
+            MeshPhysicalMaterial
+          </Link>
+        </Tab>
       </Tabs>
 
       <Routes>
         <Route path="/pointsmaterial" element={<PointsMaterial />} />
         <Route path="/linematerial" element={<LineMaterial />} />
         <Route path="/linedashedmaterial" element={<LineDashedMaterial />} />
+        <Route path="/meshbasicmaterial" element={<MeshBasicMaterial />} />
+        <Route path="/meshlambertmaterial" element={<MeshLambertMaterial />} />
+        <Route path="/meshphongmaterial" element={<MeshPhongMaterial />} />
+        <Route
+          path="/meshstandardmaterial"
+          element={<MeshStandardMaterial />}
+        />
+        <Route
+          path="/meshphysicalmaterial"
+          element={<MeshPhysicalMaterial />}
+        />
       </Routes>
     </Container>
   );
