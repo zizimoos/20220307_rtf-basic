@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Geometry from "./routes/Geometry";
 import Home from "./routes/Home";
+import Map from "./routes/Map";
 import Material from "./routes/Material";
 
 function Router(props) {
@@ -11,6 +12,7 @@ function Router(props) {
         <Route path="/" element={<Home />}></Route>
         <Route path="/geometry/*" element={<Geometry />}></Route>
         <Route path="/material/*" element={<Material />}></Route>
+        <Route path="/map/*" element={<Map />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -12,6 +12,7 @@ function Home(props) {
     <Container>
       <Link to="/geometry">Geometry</Link>
       <Link to="/material">Material</Link>
+      <Link to="/map">Map</Link>
     </Container>
   );
 }
