@@ -1,20 +1,13 @@
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { useRef, useMemo, Suspense } from "react";
+import React, { useRef, Suspense } from "react";
 import styled from "styled-components";
 
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import texture from "./disc.png";
 
-import imap from "./Glass_Window_002_basecolor.jpg";
-import imapAO from "./Glass_Window_002_ambientOcclusion.jpg";
-import imapHeight from "./Glass_Window_002_height.png";
-import imapNormal from "./Glass_Window_002_normal.jpg";
-import imapRoughness from "./Glass_Window_002_roughness.jpg";
-import imapMetalic from "./Glass_Window_002_metallic.jpg";
-import imapAlpha from "./Glass_Window_002_opacity.jpg";
+import iuvmap from "./uv_grid_opengl.jpg";
 
 const Container = styled.div`
   width: 100%;
@@ -45,83 +38,49 @@ const Animation = (props) => {
 const Map = () => {
   const thisBox = useRef();
 
-  const colormap = useLoader(TextureLoader, texture);
-  const map = useLoader(TextureLoader, imap);
-  const mapAO = useLoader(TextureLoader, imapAO);
-  const mapHeight = useLoader(TextureLoader, imapHeight);
-  const mapNormal = useLoader(TextureLoader, imapNormal);
-  const mapRoughness = useLoader(TextureLoader, imapRoughness);
-  const mapMetalic = useLoader(TextureLoader, imapMetalic);
-  const mapAlpha = useLoader(TextureLoader, imapAlpha);
+  const uvmap = useLoader(TextureLoader, iuvmap);
 
-  const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
+  uvmap.repeat.set(2, 2);
+  uvmap.wrapS = THREE.RepeatWrapping;
+  uvmap.wrapT = THREE.RepeatWrapping;
 
-  const [positions] = useMemo(() => {
-    const positions = new Float32Array(vertices, 3);
-
-    return [positions];
-  }, [vertices]);
+  uvmap.magFilter = THREE.LinearFilter;
+  uvmap.minFilter = THREE.NearestMipMapLinearFilter;
 
   return (
     <group ref={thisBox}>
       <mesh>{/* <axesHelper args={[4]} /> */}</mesh>
       <mesh position={[1, -1, 0]}>
         <boxGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshPhysicalMaterial
-          attach="material"
-          color="white"
-          emissive="black"
-          roughness={1}
-          metalness={0}
-          clearcoat={1}
-          clearcoatRoughness={0}
-          wireframe={false}
-          flatShading={false}
-          map={map}
-        />
+        <meshStandardMaterial attach="material" map={uvmap} />
         <axesHelper args={[1]} />
       </mesh>
       <mesh position={[1, 1, 0]}>
         <boxGeometry attach="geometry" args={[1, 1, 1]} />
         <meshStandardMaterial
           attach="material"
-          color="white"
-          emissive="black"
           roughness={0.2}
           metalness={0.3}
           wireframe={false}
           flatShading={false}
-          map={map}
+          map={uvmap}
         />
         <axesHelper args={[1]} />
       </mesh>
       <mesh position={[-1, -1, 0]}>
         <sphereGeometry attach="geometry" args={[0.5, 16, 16]} />
-        <meshPhysicalMaterial
-          attach="material"
-          color="white"
-          emissive="black"
-          roughness={1}
-          metalness={0}
-          clearcoat={1}
-          clearcoatRoughness={0}
-          wireframe={false}
-          flatShading={false}
-          map={map}
-        />
+        <meshStandardMaterial attach="material" map={uvmap} />
         <axesHelper args={[1]} />
       </mesh>
       <mesh position={[-1, 1, 0]}>
         <sphereGeometry attach="geometry" args={[0.5, 16, 16]} />
         <meshStandardMaterial
           attach="material"
-          color="white"
-          emissive="black"
           roughness={0.2}
           metalness={0.3}
           wireframe={false}
           flatShading={false}
-          map={map}
+          map={uvmap}
         />
         <axesHelper args={[1]} />
       </mesh>
@@ -139,8 +98,8 @@ function MeshPhysicalMaterial(props) {
         gl={{ antialias: true }}
         camera={{ position: [0, 4, 0] }}
       >
-        <ambientLight />
-        <directionalLight position={[0, 20, 10]} color="white" intensity={1} />
+        <ambientLight intensity={0.1} />
+        <directionalLight position={[0, 40, 10]} color="white" intensity={1} />
         <Suspense fallback={null}>
           <Map />
         </Suspense>

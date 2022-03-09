@@ -17,6 +17,7 @@ import ShapeLatheGeometry from "../components/geometry/ShapeLatheGeometry";
 import ExtrudeHeartGeometry from "../components/geometry/ExtrudeHeartGeometry";
 import ExtrudeTextGeometry from "../components/geometry/ExtrudeTextGeometry";
 import SceneGraph from "../components/geometry/SceneGraph";
+import CustomGeometry from "../components/geometry/CustomGeometry";
 
 const Container = styled.div`
   width: 100vw;
@@ -103,6 +104,9 @@ function Geometry(props) {
         <Tab>
           <Link to={`/geometry/scenegraph`}>SceneGraph</Link>
         </Tab>
+        <Tab>
+          <Link to={`/geometry/customgeometry`}>CustomGeometry</Link>
+        </Tab>
       </Tabs>
 
       <Routes>
@@ -122,6 +126,7 @@ function Geometry(props) {
         <Route path="/extrudegeometry" element={<ExtrudeHeartGeometry />} />
         <Route path="/extrudetextgeometry" element={<ExtrudeTextGeometry />} />
         <Route path="/scenegraph" element={<SceneGraph />} />
+        <Route path="/customgeometry" element={<CustomGeometry />} />
       </Routes>
     </Container>
   );
