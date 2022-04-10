@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+
 import LineDashedMaterial from "../components/material/LineDashedMaterial";
 import LineMaterial from "../components/material/LineMaterial";
 import MeshBasicMaterial from "../components/material/MeshBasicMaterial";
@@ -16,7 +17,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
 const Tabs = styled.div`
   width: 300px;
   display: flex;
@@ -46,6 +46,9 @@ function Material(props) {
   return (
     <Container>
       <Tabs>
+        <Title>
+          <Link to={`/`}>HOME</Link>
+        </Title>
         <Title>Material</Title>
         <Tab>
           <Link to={`/material/pointsmaterial`}>PointsMaterial</Link>

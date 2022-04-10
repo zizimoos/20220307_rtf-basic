@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+
 import AlphaMap from "../components/map/AlphaMap";
 import AOMap from "../components/map/AOMap";
 import DisplacementMap from "../components/map/DisplacementMap";
@@ -16,7 +17,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
 const Tabs = styled.div`
   width: 300px;
   display: flex;
@@ -46,6 +46,9 @@ function Map(props) {
   return (
     <Container>
       <Tabs>
+        <Title>
+          <Link to={`/`}>HOME</Link>
+        </Title>
         <Title>Mapping</Title>
         <Tab>
           <Link to={`/map/mapmaterial`}>MapMaterial</Link>

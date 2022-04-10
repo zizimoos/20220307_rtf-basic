@@ -9,13 +9,13 @@ const Container = styled.div`
   color: white;
   background-color: black;
 `;
-
 const Title = styled.h1`
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 const Moon = () => {
   return (
     <>
@@ -27,7 +27,6 @@ const Moon = () => {
     </>
   );
 };
-
 const Earth = () => {
   return (
     <>
@@ -39,7 +38,6 @@ const Earth = () => {
     </>
   );
 };
-
 const Sun = () => {
   return (
     <>

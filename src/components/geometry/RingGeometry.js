@@ -9,7 +9,6 @@ const Container = styled.div`
   color: white;
   background-color: black;
 `;
-
 const Title = styled.h1`
   padding: 10px;
   display: flex;
