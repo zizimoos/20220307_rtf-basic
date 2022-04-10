@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import texture from "./disc.png";
 
 import imap from "./Glass_Window_002_basecolor.jpg";
 import imapAO from "./Glass_Window_002_ambientOcclusion.jpg";
@@ -45,7 +44,6 @@ const Animation = (props) => {
 const Map = () => {
   const thisBox = useRef();
 
-  const colormap = useLoader(TextureLoader, texture);
   const map = useLoader(TextureLoader, imap);
   const mapAO = useLoader(TextureLoader, imapAO);
   const mapHeight = useLoader(TextureLoader, imapHeight);

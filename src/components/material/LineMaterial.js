@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef, useMemo, Suspense } from "react";
@@ -37,7 +36,6 @@ const Animation = (props) => {
 const Line = () => {
   const thisBox = useRef();
 
-  const count = 5000;
   const colormap = useLoader(TextureLoader, texture);
 
   const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];

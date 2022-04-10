@@ -1,9 +1,7 @@
-import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { ConeBufferGeometry } from "three";
 
 const Container = styled.div`
   width: 100%;

@@ -1,12 +1,7 @@
-import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef, useMemo, Suspense } from "react";
 import styled from "styled-components";
-
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
-import texture from "./disc.png";
 
 const Container = styled.div`
   width: 100%;
@@ -36,8 +31,6 @@ const Animation = (props) => {
 
 const MeshStandard = () => {
   const thisBox = useRef();
-
-  const colormap = useLoader(TextureLoader, texture);
 
   const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
 

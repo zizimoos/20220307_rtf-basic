@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef, useMemo, Suspense } from "react";
@@ -6,15 +5,9 @@ import styled from "styled-components";
 
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import texture from "./disc.png";
 
 import imap from "./Glass_Window_002_basecolor.jpg";
-import imapAO from "./Glass_Window_002_ambientOcclusion.jpg";
-import imapHeight from "./Glass_Window_002_height.png";
 import imapNormal from "./Glass_Window_002_normal.jpg";
-import imapRoughness from "./Glass_Window_002_roughness.jpg";
-import imapMetalic from "./Glass_Window_002_metallic.jpg";
-import imapAlpha from "./Glass_Window_002_opacity.jpg";
 
 const Container = styled.div`
   width: 100%;
@@ -45,14 +38,8 @@ const Animation = (props) => {
 const Map = () => {
   const thisBox = useRef();
 
-  const colormap = useLoader(TextureLoader, texture);
   const map = useLoader(TextureLoader, imap);
-  const mapAO = useLoader(TextureLoader, imapAO);
-  const mapHeight = useLoader(TextureLoader, imapHeight);
   const mapNormal = useLoader(TextureLoader, imapNormal);
-  const mapRoughness = useLoader(TextureLoader, imapRoughness);
-  const mapMetalic = useLoader(TextureLoader, imapMetalic);
-  const mapAlpha = useLoader(TextureLoader, imapAlpha);
 
   const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
 

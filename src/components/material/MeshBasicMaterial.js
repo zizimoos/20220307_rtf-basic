@@ -4,10 +4,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useRef, useMemo, Suspense } from "react";
 import styled from "styled-components";
 
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
-import texture from "./disc.png";
-
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -36,8 +32,6 @@ const Animation = (props) => {
 
 const MeshBasic = () => {
   const thisBox = useRef();
-
-  const colormap = useLoader(TextureLoader, texture);
 
   const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
 
