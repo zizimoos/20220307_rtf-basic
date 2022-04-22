@@ -23,7 +23,7 @@ export default function Model({ action }) {
   }, [action, actions, previousAction]);
 
   return (
-    <group ref={group} dispose={null}>
+    <group ref={group} dispose={null} castShadow>
       <group>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hips} />
