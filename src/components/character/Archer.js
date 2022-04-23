@@ -14,7 +14,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: darkgray;
+  background-color: black;
 `;
 const Title = styled.h1`
   padding: 10px;
