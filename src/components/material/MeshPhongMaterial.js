@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { useRef, useMemo, Suspense } from "react";
+import React, { useRef, Suspense } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -31,14 +31,14 @@ const Animation = (props) => {
 const MeshLambert = () => {
   const thisBox = useRef();
 
-  const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
+  // const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
 
-  const [positions] = useMemo(() => {
-    const positions = new Float32Array(vertices, 3);
-    // const sizes = new Float32Array(count * 3);
+  // const [positions] = useMemo(() => {
+  //   const positions = new Float32Array(vertices, 3);
+  //   // const sizes = new Float32Array(count * 3);
 
-    return [positions];
-  }, [vertices]);
+  //   return [positions];
+  // }, [vertices]);
 
   return (
     <group ref={thisBox}>

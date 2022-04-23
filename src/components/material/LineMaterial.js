@@ -37,9 +37,8 @@ const Line = () => {
 
   const colormap = useLoader(TextureLoader, texture);
 
-  const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
-
   const [positions] = useMemo(() => {
+    const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
     const positions = new Float32Array(vertices, 3);
     // const sizes = new Float32Array(count * 3);
 
