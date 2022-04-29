@@ -13,7 +13,9 @@ function Home(props) {
       <Link to="/geometry">Geometry</Link>
       <Link to="/material">Material</Link>
       <Link to="/map">Map</Link>
+      <Link to="/advanced">Advanced</Link>
       <Link to="/chracter">Chracter</Link>
+
     </Container>
   );
 }

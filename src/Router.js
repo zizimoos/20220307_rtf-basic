@@ -5,6 +5,7 @@ import Geometry from "./routes/Geometry";
 import Home from "./routes/Home";
 import Map from "./routes/Map";
 import Material from "./routes/Material";
+import Advanced from "./routes/Advanced";
 
 function Router(props) {
   return (
@@ -14,6 +15,7 @@ function Router(props) {
         <Route path="/geometry/*" element={<Geometry />}></Route>
         <Route path="/material/*" element={<Material />}></Route>
         <Route path="/chracter/*" element={<Chracter />}></Route>
+        <Route path="/advanced/*" element={<Advanced />}></Route>
         <Route path="/map/*" element={<Map />}></Route>
       </Routes>
     </BrowserRouter>
